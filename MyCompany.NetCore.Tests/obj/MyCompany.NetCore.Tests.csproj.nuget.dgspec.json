@@ -1,0 +1,180 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore.Tests\\MyCompany.NetCore.Tests.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore.Tests\\MyCompany.NetCore.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore.Tests\\MyCompany.NetCore.Tests.csproj",
+        "projectName": "MyCompany.NetCore.Tests",
+        "projectPath": "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore.Tests\\MyCompany.NetCore.Tests.csproj",
+        "packagesPath": "C:\\Users\\AmarjeetYelwande\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\ProgramData\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\AmarjeetYelwande\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore\\MyCompany.NetCore.csproj": {
+                "projectPath": "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore\\MyCompany.NetCore.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Bogus": {
+              "target": "Package",
+              "version": "[28.3.1, )"
+            },
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.0.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "SpecFlow": {
+              "target": "Package",
+              "version": "[3.0.225, )"
+            },
+            "SpecFlow.MsTest": {
+              "target": "Package",
+              "version": "[3.0.225, )"
+            },
+            "SpecFlow.Tools.MsBuild.Generation": {
+              "target": "Package",
+              "version": "[3.0.225, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.5.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore\\MyCompany.NetCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore\\MyCompany.NetCore.csproj",
+        "projectName": "MyCompany.NetCore",
+        "projectPath": "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore\\MyCompany.NetCore.csproj",
+        "packagesPath": "C:\\Users\\AmarjeetYelwande\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AmarjeetYelwande\\source\\repos\\MyCompany.NetCore\\MyCompany.NetCore\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\ProgramData\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\AmarjeetYelwande\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "BouncyCastle": {
+              "target": "Package",
+              "version": "[1.8.5, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "Newtonsoft.Json.Schema": {
+              "target": "Package",
+              "version": "[3.0.11, )"
+            },
+            "jose-jwt": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

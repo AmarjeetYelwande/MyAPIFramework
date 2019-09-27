@@ -1,0 +1,21 @@
+﻿{
+  "ver": 1,
+  "jti": "AT.eri2D21w0OL-adldM2FyLTlDr-QVzx5Ih24GfUjp12Q",
+  "iss": "https://idp.mybrand.co.uk/v1/authorize",
+  "aud": "http://localhost:49971/",
+  "iat": 1552385441,
+  "exp": 1652608000,
+  "cid": "0oai51udotJNirBJS0h7",
+  "uid": "00uc1k2v2oMoXWJC70h7",
+  "scp": [
+    "openid",
+    "roles"
+  ],
+  "sub": "mungo@junet.co.uk",
+  "identifierUid": "65536782-6A33-4B80-8961-AB8AECEAC7ED",
+  "roles": [
+    "Customer"
+  ],
+  "brand": "mybrand",
+  "status": "Full"
+}

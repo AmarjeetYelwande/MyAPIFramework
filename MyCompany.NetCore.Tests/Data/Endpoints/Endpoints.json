@@ -1,0 +1,9 @@
+﻿{
+  "testlocaljsongetandelete": {
+    "Endpoint": "http://localhost:3000/posts/1"
+  },
+
+  "testlocaljsonpost": {
+    "Endpoint": "http://localhost:3000/posts/"
+  }
+}
