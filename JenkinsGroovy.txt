@@ -1,5 +1,6 @@
 pipeline {
  agent any
+ 
  environment {
   dotnet = 'C:/Program Files/dotnet/dotnet.exe'
  }
@@ -36,7 +37,7 @@ pipeline {
   }
   stage('Publish') {
    steps {
-    bat "dotnet nuget push **\\nupkgs\\*.nupkg -k oy2cf7lo7ybmxxxxb4haatm7vqltszgepas2lw3yqafqdi -s https://api.nuget.org/v3/index.json"
+    bat "dotnet nuget push **\\MyCompany.NetCore\\nupkgs\\*.nupkg -k oy2cf7lo7ybmxxxxb4haatm7vqltszgepas2lw3yqafqdi -s https://www.nuget.org"
    }
   }
  }
