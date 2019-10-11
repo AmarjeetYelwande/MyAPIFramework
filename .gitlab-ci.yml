@@ -1,0 +1,16 @@
+image: microsoft/dotnet:latest
+
+variables:
+     PUBLISH_DIR:  $CI_PROJECT_DIR
+     TEST_PROJECT_SIT: $CI_PROJECT_DIR/MyCompany.NetCore.Tests/     
+
+stages:   
+    - Test
+
+TESTING:
+    stage: Test
+    script:
+        - "dotnet restore"
+        - "cd $TEST_PROJECT_SIT"
+        - "dotnet build -c Release"        
+        - "dotnet test -c Release"   
