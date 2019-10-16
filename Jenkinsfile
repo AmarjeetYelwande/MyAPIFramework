@@ -12,6 +12,7 @@ node {
     stage('Checkout') {
         deleteDir()
         checkout scm
+		message: 'finished checking out code. Now entering Build stage...'
     }
     stage('Build') {
         imageTag = "${imageName}:${version}"
