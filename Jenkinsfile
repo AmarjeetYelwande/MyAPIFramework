@@ -16,6 +16,7 @@ node {
     stage('Build') {
         imageTag = "${imageName}:${version}"
         buildImage = docker.build(imageTag, "--no-cache .")
+		message: 'finished building image. Now entering Publish stage...'
     }
     stage('Publish') {       
 
