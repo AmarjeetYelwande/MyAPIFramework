@@ -12,12 +12,12 @@ node {
     stage('Checkout') {
         deleteDir()
         checkout scm
-		message: 'finished checking out code. Now entering Build stage...'
+		echo "Finished checking out code. Now entering Build stage..."
     }
     stage('Build') {
         imageTag = "${imageName}:${version}"
         buildImage = docker.build(imageTag, "--no-cache .")
-		message: 'finished building image. Now entering Publish stage...'
+		echo "Finished building image. Now entering Publish stage..."
     }
     stage('Publish') {       
 
