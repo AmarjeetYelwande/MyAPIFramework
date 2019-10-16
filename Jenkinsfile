@@ -23,11 +23,4 @@ node {
             buildImage.push(version)
         }
     }
-   /* stage('Deploy') {
-     build job: 'temp-docker-deploy/my-api-tests', parameters: [string(name: 'IMAGE_TAG', value: version)]
-    }
- 
-    stage('Run-Integration-Tests') {
-         build job: 'my-api-testing', parameters: [string(name: 'BRANCH', value: 'master')], wait: false
-    }*/
 }
