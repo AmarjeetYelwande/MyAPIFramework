@@ -90,7 +90,7 @@ namespace MyCompany.NetCore.Tests.FeatureSteps
         {
             //use api string reference to store response values in code and assert response against it
             string responseContent = ResponseData["SourceCode"].ToString();
-            Assert.IsTrue(JSONUtilities.ValidateJSONContentAgainstSchema(responseContent),
+            Assert.IsTrue(JsonUtilities.ValidateJsonContentAgainstSchema(responseContent),
                 $"Schema validation failed for response");
         }
 

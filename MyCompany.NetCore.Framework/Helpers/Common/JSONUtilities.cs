@@ -8,75 +8,75 @@ using Newtonsoft.Json.Schema;
 
 namespace MyCompany.NetCore.Framework.Helpers.Common
 {
-    public static class JSONUtilities
+    public static class JsonUtilities
     {
-        public static string GetJsonValue(string JSONString, string propertykey, string subValue)
+        public static string GetJsonValue(string jsonString, string propertyKey, string subValue)
         {
-            string propertyvalue = "";
+            string propertyValue = "";
             try
             {
                 if (subValue == "")
                 {
-                    if (!JSONString.StartsWith("["))
+                    if (!jsonString.StartsWith("["))
                     {
-                        JObject jObject = JObject.Parse(JSONString);
-                        propertyvalue = (string)jObject.SelectToken(propertykey);
+                        JObject jObject = JObject.Parse(jsonString);
+                        propertyValue = (string)jObject.SelectToken(propertyKey);
                     }
-                    if (JSONString.StartsWith("["))
+                    if (jsonString.StartsWith("["))
                     {
-                        JArray array = JArray.Parse(JSONString.ToString());
-                        propertyvalue = (string)array[0].SelectToken(propertykey);
+                        JArray array = JArray.Parse(jsonString.ToString());
+                        propertyValue = (string)array[0].SelectToken(propertyKey);
                     }
                 }
                 else
                 {
-                    JObject jObject = JObject.Parse(JSONString);
+                    JObject jObject = JObject.Parse(jsonString);
                     JToken value = jObject[subValue][0];
-                    propertyvalue = value[propertykey].ToString();
+                    propertyValue =  value[propertyKey].ToString();
                 }
             }
-            catch (Exception propertyreaderror)
+            catch (Exception propertyReadError)
             {
-                Console.WriteLine("Could not read the Property: " + propertykey + " due to error: " + propertyreaderror.Message);
+                Console.WriteLine("Could not read the Property: " + propertyKey + " due to error: " + propertyReadError.Message);
                 throw;
             }
-            return propertyvalue;
+            return propertyValue;
         }
 
-        public static JArray GetJsonArrayFromString(string JSONString)
+        public static JArray GetJsonArrayFromString(string jsonString)
         {
             JArray jsonArray = null;
             try
             {
-                jsonArray = JArray.Parse(JSONString) as JArray;
+                jsonArray = JArray.Parse(jsonString) as JArray;
             }
-            catch (Exception arrayprocessigerror)
+            catch (Exception arrayProcessingError)
             {
-                Console.WriteLine($"Conversion of string to array failed due to error {arrayprocessigerror.Message}");
+                Console.WriteLine($"Conversion of string to array failed due to error {arrayProcessingError.Message}");
                 throw;
             }
             return jsonArray;
         }       
        
-        public static bool ValidateJSONContentAgainstSchema(string responsecontent)
+        public static bool ValidateJsonContentAgainstSchema(string responseContent)
         {
             try
             {
-                responsecontent = responsecontent.Trim();
-                if (!responsecontent.StartsWith("[")){responsecontent = "[" + responsecontent + "]";}
+                responseContent = responseContent.Trim();
+                if (!responseContent.StartsWith("[")){responseContent = "[" + responseContent + "]";}
                 string currentDirectory = Directory.GetCurrentDirectory();
                 string pathToJson = Path.Combine(currentDirectory, "Schemas", "StandardJsonSchema.json");
-                using (var rawjsonschema = new StreamReader(pathToJson))
+                using (var rawJsonSchema = new StreamReader(pathToJson))
                 {
-                    var intermediateschema = rawjsonschema.ReadToEnd();
-                    JSchema finalschema = JSchema.Parse(intermediateschema);
-                    var responsedata = JsonConvert.DeserializeObject<JArray>(responsecontent).ToObject<List<JObject>>().FirstOrDefault();
-                    return responsedata.IsValid(finalschema);
+                    var intermediateSchema = rawJsonSchema.ReadToEnd();
+                    JSchema finalSchema = JSchema.Parse(intermediateSchema);
+                    var responseData = JsonConvert.DeserializeObject<JArray>(responseContent).ToObject<List<JObject>>().FirstOrDefault();
+                    return responseData.IsValid(finalSchema);
                 }
             }
-            catch(Exception processingerror)
+            catch(Exception processingError)
             {
-                Console.WriteLine($"Unable to process response content due to error {processingerror.Message}");
+                Console.WriteLine($"Unable to process response content due to error {processingError.Message}");
                 throw;
             }
         }

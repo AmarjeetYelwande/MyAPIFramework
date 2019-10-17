@@ -46,9 +46,9 @@ namespace MyCompany.NetCore.Framework.Operation
                 (sender, certificate, chain, sslPolicyErrors) => true;
             ServicePointManager.ServerCertificateValidationCallback = (s, cert, chain, ssl) => true;
 
-            if (_requestparameters.Method == HTTPMethod.POST 
-               || _requestparameters.Method == HTTPMethod.PUT 
-               || _requestparameters.Method == HTTPMethod.PATCH )
+            if (_requestparameters.Method == HttpMethod.POST 
+               || _requestparameters.Method == HttpMethod.PUT 
+               || _requestparameters.Method == HttpMethod.PATCH )
             {
                 if (_requestparameters.RequestData != null)
                 {

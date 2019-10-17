@@ -11,7 +11,7 @@ namespace MyCompany.NetCore.Framework.Operation
         public Uri Url { get; private set; }
         public string Resource { get; private set; }
         public string DesiredMethod { get; private set; }
-        public HTTPMethod Method { get; private set; }
+        public HttpMethod Method { get; private set; }
         public string ContentType { get; private set; }
         public WebProxy ProxyServer { get; private set; }
         public string Referer { get; private set; }
@@ -28,46 +28,46 @@ namespace MyCompany.NetCore.Framework.Operation
         {
             Url = new Uri(endpoint);
         }
-        public void AddURIParameters(string parameters)
+        public void AddUriParameters(string parameters)
         {
             Url = new Uri(Url + parameters);
         }
-        public void SetAPIRequestMethod(string desiredmethod)
+        public void SetApiRequestMethod(string desiredMethod)
         {
-            DesiredMethod = desiredmethod.ToUpper();
+            DesiredMethod = desiredMethod.ToUpper();
             #region methodoptions
             switch (DesiredMethod)
             {
                 case "GET":
-                    Method = HTTPMethod.GET;
+                    Method = HttpMethod.GET;
                     break;
                 case "POST":
-                    Method = HTTPMethod.POST;
+                    Method = HttpMethod.POST;
                     break;
                 case "DELETE":
-                    Method = HTTPMethod.DELETE;
+                    Method = HttpMethod.DELETE;
                     break;
                 case "PUT":
-                    Method = HTTPMethod.PUT;
+                    Method = HttpMethod.PUT;
                     break;
                 case "PATCH":
-                    Method = HTTPMethod.PATCH;
+                    Method = HttpMethod.PATCH;
                     break;
                 case "HEAD":
-                    Method = HTTPMethod.HEAD;
+                    Method = HttpMethod.HEAD;
                     break;
                 case "OPTIONS":
-                    Method = HTTPMethod.OPTIONS;
+                    Method = HttpMethod.OPTIONS;
                     break;
                 default:
-                    Method = HTTPMethod.POST;
+                    Method = HttpMethod.POST;
                     break;
             }
             #endregion
         }
-        public void SetAuthentication(bool isauthentication)
+        public void SetAuthentication(bool isAuthentication)
         {
-            Authentication = isauthentication ? true : false;
+            Authentication = isAuthentication ? true : false;
         }
         public void SetUserName(string username)
         {
@@ -77,9 +77,9 @@ namespace MyCompany.NetCore.Framework.Operation
         {
             Password = password;
         }
-        public void SetAuthenticationProtocol(string desiredprotocol)
+        public void SetAuthenticationProtocol(string desiredProtocol)
         {
-            switch (desiredprotocol.ToUpper())
+            switch (desiredProtocol.ToUpper())
             {
                 case "BASIC":
                     Protocol = AuthProtocol.BASIC;
@@ -92,34 +92,34 @@ namespace MyCompany.NetCore.Framework.Operation
                     break;
             }
         }
-        public void SetCache(string cachetime)
+        public void SetCache(string cacheTime)
         {
-            CacheTime = (cachetime.Length > 0) ? cachetime : "0";
+            CacheTime = (cacheTime.Length > 0) ? cacheTime : "0";
         }
 
-        public void SetContentType(string contenttype)
+        public void SetContentType(string contentType)
         {
-            ContentType = contenttype ?? "application/json;charset=utf-8";
+            ContentType = contentType ?? "application/json;charset=utf-8";
         }
 
-        public void SetProxyServer(WebProxy proxyserver)
+        public void SetProxyServer(WebProxy proxyServer)
         {            
-            ProxyServer = proxyserver;
+            ProxyServer = proxyServer;
         }
 
-        public void SetHeaders(string headerkey, string headervalue)
+        public void SetHeaders(string headerKey, string headerValue)
         {
-            HeaderKeyValues.Add(headerkey, headervalue);
+            HeaderKeyValues.Add(headerKey, headerValue);
         }
 
-        public void SetCustomHeader(string customheader)
+        public void SetCustomHeader(string desireCustomHeader)
         {
-            CustomHeader = customheader ?? "";
+            CustomHeader = desireCustomHeader ?? "";
         }
 
-        public void SetRequestData(string requestpayload)
+        public void SetRequestData(string requestPayload)
         {
-            RequestData = requestpayload ?? "";
+            RequestData = requestPayload ?? "";
         }
 
         public void SetReferer(string referer)

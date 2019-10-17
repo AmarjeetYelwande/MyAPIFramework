@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 
 namespace MyCompany.NetCore.Tests.Common
 {
-    class CommonMethods
+    public class CommonMethods
     {
         private RequestParameters RequestParameters { get; set; }
         private static TestContext TestContext { get; set; }
@@ -35,28 +35,31 @@ namespace MyCompany.NetCore.Tests.Common
         internal void SetEndPointParameters(string parameters)
         {
             var allParameters = new Dictionary<string, string>();
-            string rawparameters = parameters.Replace(" And ", ",");
-            var allparameters = rawparameters.Split(',');
+            string rawParameters = parameters.Replace(" And ", ",");
+            var customParameters = rawParameters.Split(',');
 
-            foreach (var key in allparameters)
+            foreach (var key in customParameters)
             {
                 try
                 {
                     string value = TestContext.Properties["Parameter:" + key].ToString() ?? "";
                     allParameters.Add(key, value);
                 }
-                catch { }
+                catch (Exception)
+                {
+                    // ignored
+                }
             }
 
             string endpointParameters = Helper.DictionaryToQueryParametersList(allParameters);
-            RequestParameters.AddURIParameters(endpointParameters);
+            RequestParameters.AddUriParameters(endpointParameters);
         }
-        internal void GenerateOAuth2Token(string oAuthendpoint, string oAuthParameters)
+        internal void GenerateOAuth2Token(string oAuthEndPoint, string oAuthParameters)
         {
             string oAuthParams = oAuthParameters.Replace(" And ", ",");
             var oauthParameters = oAuthParams.Split(',');
 
-            Dictionary<string, string> allParameters = new Dictionary<string, string>();
+            var allParameters = new Dictionary<string, string>();
 
             foreach (var key in oauthParameters)
             {
@@ -72,20 +75,20 @@ namespace MyCompany.NetCore.Tests.Common
             string requestString = EndPoint.GetEndpoint(authorizationServer);
             string parameters = Helper.DictionaryToQueryParametersList(allParameters);
             Console.WriteLine($"Printing endpoint and parameters for oauth2 request {requestString + parameters}");
-            var Oauth2Token = new OAuth2();
-            string OAuthToken = Oauth2Token.GetOAuthToken(requestString + parameters);
+            var oauth2Token = new OAuth2();
+            string OAuthToken = oauth2Token.GetOAuthToken(requestString + parameters);
             RequestParameters.SetHeaders(_authHeader, "Bearer " + OAuthToken);
         }
 
-        internal void SetPostOrPutData(string postdataid)
+        internal void SetPostOrPutData(string postDataId)
         {
-            string postData = PostData.GetPostData(postdataid);
+            string postData = PostData.GetPostData(postDataId);
             RequestParameters.SetRequestData(postData);
         }
 
-        internal void SetApiMethod(string apimethod)
+        internal void SetApiMethod(string apiMethod)
         {
-            RequestParameters.SetAPIRequestMethod(apimethod);
+            RequestParameters.SetApiRequestMethod(apiMethod);
         }
         internal void SetHeaders(string authorizationType, string headerParameters)
         {
@@ -97,7 +100,7 @@ namespace MyCompany.NetCore.Tests.Common
                 string authority = TestContext.Properties["Parameter:authority"].ToString();
                 string brand = TestContext.Properties["Parameter:brand"].ToString();
                 string uid = TestContext.Properties["Parameter:customeruid"].ToString();
-                RequestParameters.SetHeaders(_authHeader, JsonWebToken.GetJWToken(authority, brand, uid));
+                RequestParameters.SetHeaders(_authHeader, JsonWebToken.GetJsonWebToken(authority, brand, uid));
             }
             else if (authorizationType.Equals("basic", StringComparison.InvariantCultureIgnoreCase))
             {
@@ -117,7 +120,10 @@ namespace MyCompany.NetCore.Tests.Common
                         RequestParameters.SetHeaders(authorizationParameter, parameterValue);
                     }
                 }
-                catch { }
+                catch (Exception)
+                {
+                    // ignored
+                }
             }
             RequestParameters.SetHeaders("x-transaction-id", Helper.GenerateTransactionId());
         }
@@ -131,7 +137,7 @@ namespace MyCompany.NetCore.Tests.Common
             string headerData = JsonConvert.DeserializeObject(headerJson).ToString();
             bool isHeaderValid = headerData.Contains("RS256");
 
-            if (isHeaderValid){return true;} return false;
+            return isHeaderValid;
         }
 
         internal string SetJwtParametersAndGetJwToken(string jsonTokenParameters)
@@ -139,7 +145,7 @@ namespace MyCompany.NetCore.Tests.Common
             string authority = TestContext.Properties["Parameter:brand"].ToString();
             string brand = TestContext.Properties["Parameter:brand"].ToString();
             string uid = TestContext.Properties["Parameter:customeruid"].ToString();
-            string jsonWebToken = JsonWebToken.GetJWToken(authority, brand, uid);
+            string jsonWebToken = JsonWebToken.GetJsonWebToken(authority, brand, uid);
             Console.WriteLine($"Generated json token is {jsonWebToken} Verify the token on JWT.io website");
             return jsonWebToken;
         }

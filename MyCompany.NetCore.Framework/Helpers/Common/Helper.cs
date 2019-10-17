@@ -7,11 +7,11 @@ namespace MyCompany.NetCore.Framework.Helpers.Common
 {
     public static class Helper
     {
-        public static string CreateDirectoryOnDisk(string requiredfoldername)
+        public static string CreateDirectoryOnDisk(string requiredFolderName)
         {
             string root = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string parentfoldername = "YourParentFolderName";
-            var path = Path.Combine(root, parentfoldername, requiredfoldername);
+            string parentFolderName = "YourParentFolderName";
+            var path = Path.Combine(root, parentFolderName, requiredFolderName);
             Directory.CreateDirectory(path);
             return path;
         }
@@ -19,38 +19,38 @@ namespace MyCompany.NetCore.Framework.Helpers.Common
         {
             return Guid.NewGuid().ToString();
         }
-        public static string DictionaryToQueryParametersList(Dictionary<string, string> parameterlist)
+        public static string DictionaryToQueryParametersList(Dictionary<string, string> parameterList)
         {
-            if (parameterlist.Count != 0)
+            if (parameterList.Count != 0)
             {
-                var keys = new List<string>(parameterlist.Keys);
+                var keys = new List<string>(parameterList.Keys);
                 StringBuilder sb = new StringBuilder();
                 foreach (string key in keys)
                 {
-                    var value = parameterlist[key];
+                    var value = parameterList[key];
                     sb.Append(key + "=" + value + "&");
                 }
-                var intermediatestring = sb.ToString();
-                var finalstring = intermediatestring.Remove(intermediatestring.Length - 1);
-                return finalstring;
+                var intermediateString = sb.ToString();
+                var finalString = intermediateString.Remove(intermediateString.Length - 1);
+                return finalString;
             }
             return "";
         }
 
-        public static string DictionaryToUriParametersList(Dictionary<string, string> parameterlist)
+        public static string DictionaryToUriParametersList(Dictionary<string, string> parameterList)
         {
-            if (parameterlist.Count != 0)
+            if (parameterList.Count != 0)
             {
-                var keys = new List<string>(parameterlist.Keys);
-                StringBuilder sb = new StringBuilder();
-                foreach (string key in keys)
+                var keys = new List<string>(parameterList.Keys);
+                var sb = new StringBuilder();
+                foreach (var key in keys)
                 {
-                    var value = parameterlist[key];
+                    var value = parameterList[key];
                     sb.Append(value + "/");
                 }
-                var intermediatestring = sb.ToString();
-                var finalstring = intermediatestring.Remove(intermediatestring.Length - 1);
-                return finalstring;
+                var intermediateString = sb.ToString();
+                
+                return intermediateString.Remove(intermediateString.Length - 1);
             }
             return "";
         }

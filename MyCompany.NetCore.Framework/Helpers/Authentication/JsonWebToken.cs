@@ -10,7 +10,7 @@ namespace MyCompany.NetCore.Framework.Helpers.Authentication
 {
     public static class JsonWebToken
     {
-        public static string GetJWToken(string Authority, string Brand, string Uid)
+        public static string GetJsonWebToken(string authority, string brand, string Uid)
         {
             string currentDirectory = Directory.GetCurrentDirectory();
             string pathToFile = Path.Combine(currentDirectory, "Data","JWToken", "PrivateKey.pem");
@@ -31,27 +31,26 @@ namespace MyCompany.NetCore.Framework.Helpers.Authentication
             }
             var rsa = new RSACryptoServiceProvider();
             rsa.ImportParameters(rsaParams);
-            string stringtoken;
-            stringtoken = Jose.JWT.Encode(GetPayload(Authority, Brand, Uid), rsa, Jose.JwsAlgorithm.RS256);
+            var stringToken = Jose.JWT.Encode(GetPayload(authority, brand, Uid), rsa, Jose.JwsAlgorithm.RS256);
             
-            return ("Bearer " + stringtoken);
+            return ("Bearer " + stringToken);
         }
-        private static object GetPayload(string Authority, string Brand, string Uid)
+        private static object GetPayload(string authority, string brand, string uid)
         {
             DateTime now = DateTime.UtcNow;
             DateTime issued = DateTime.Now;
             DateTime expire = DateTime.Now.AddHours(1);
             string currentDirectory = Directory.GetCurrentDirectory();
             string pathToJson = Path.Combine(currentDirectory, "Data","JWToken", "BrandIdentity.json");
-            var rawjsonschema = new StreamReader(pathToJson);
-            var finaljson = rawjsonschema.ReadToEnd();
+            var rawJsonSchema = new StreamReader(pathToJson);
+            var finalJson = rawJsonSchema.ReadToEnd();
             var payload = new JwtParser();
-            payload = JwtParser.FromJson(finaljson);
-            payload.iss = "https://idp." + Authority + ".co.uk/v1/authorize";
+            payload = JwtParser.FromJson(finalJson);
+            payload.iss = "https://idp." + authority + ".co.uk/v1/authorize";
             payload.iat = ToUnixTime(issued);
             payload.exp = ToUnixTime(expire);
-            payload.brand = Brand;
-            if (Uid != string.Empty) payload.identifierUid = Uid;
+            payload.brand = brand;
+            if (uid != string.Empty) payload.identifierUid = uid;
 
             return payload;
         }

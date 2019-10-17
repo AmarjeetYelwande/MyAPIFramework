@@ -15,14 +15,14 @@ namespace MyCompany.NetCore.Framework.Helpers.Authentication
             if (IsDigitsOnly(clientcredentials))
             {
                 var random = new Random();
-                var allcharacters = "abcdefghijklmnopqrstuvwxyz0123456789";
-                var finalstring = new char[Int32.Parse(clientcredentials)];
+                const string allCharacters = "abcdefghijklmnopqrstuvwxyz0123456789";
+                var finalString = new char[Int32.Parse(clientcredentials)];
 
-                for (int i = 0; i < finalstring.Length; i++)
+                for (int i = 0; i < finalString.Length; i++)
                 {
-                    finalstring[i] = allcharacters[random.Next(allcharacters.Length)];
+                    finalString[i] = allCharacters[random.Next(allCharacters.Length)];
                 }
-                return new string(finalstring);
+                return new string(finalString);
             }
             else
             {

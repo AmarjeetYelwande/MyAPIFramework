@@ -1,6 +1,6 @@
 namespace MyCompany.NetCore.Framework.Enumerators
 {
-    public enum HTTPMethod
+    public enum HttpMethod
     {
         GET,
         POST,
@@ -15,7 +15,7 @@ namespace MyCompany.NetCore.Framework.Enumerators
         BASIC,
         NTLM
     }
-    public enum APIType
+    public enum ApiType
     {
         SOAP,
         REST,
