@@ -22,3 +22,12 @@ Scenario Outline: TestSimpleLocalJsonServerAPIGet
 		| test          | application              | authorization | apimethod | contenttype                    | statuscode | maxresponsetime | api           |
 		| testsimpleapi | testlocaljsongetandelete | No            | GET       | application/json;charset=utf-8 | 200        | 5000            | testlocaljson |
 
+@GenerateJWToken
+Scenario Outline: GenerateJWTTokenAndValidate
+	Given I want to generate JWToken for my application
+	When I generate the JWToken with parameters brand And authority And customeruid
+	Then I get well formed JWToken which I can verify for its integrity
+
+	Examples:
+		| test            | brand    | authority   | customeruid						   |
+		| generateJWToken | MyBrand  | MyAuthority | 9df917e5-f3e1-4fa1-bd19-d83e8542fa07  |     

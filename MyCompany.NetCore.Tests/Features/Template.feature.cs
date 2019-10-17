@@ -138,6 +138,44 @@ this.ScenarioInitialize(scenarioInfo);
 this.TestSimpleLocalJsonServerAPIGet("testsimpleapi", "testlocaljsongetandelete", "No", "GET", "application/json;charset=utf-8", "200", "5000", "testlocaljson", ((string[])(null)));
 #line hidden
         }
+        
+        public virtual void GenerateJWTTokenAndValidate(string test, string brand, string authority, string customeruid, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "GenerateJWToken"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GenerateJWTTokenAndValidate", null, @__tags);
+#line 26
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 27
+ testRunner.Given("I want to generate JWToken for my application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 28
+ testRunner.When("I generate the JWToken with parameters brand And authority And customeruid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 29
+ testRunner.Then("I get well formed JWToken which I can verify for its integrity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("GenerateJWTTokenAndValidate: generateJWToken")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Template feature for testing rest API")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("GenerateJWToken")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "generateJWToken")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:test", "generateJWToken")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:brand", "MyBrand")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:authority", "MyAuthority")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:customeruid", "9df917e5-f3e1-4fa1-bd19-d83e8542fa07")]
+        public virtual void GenerateJWTTokenAndValidate_GenerateJWToken()
+        {
+#line 26
+this.GenerateJWTTokenAndValidate("generateJWToken", "MyBrand", "MyAuthority", "9df917e5-f3e1-4fa1-bd19-d83e8542fa07", ((string[])(null)));
+#line hidden
+        }
     }
 }
 #pragma warning restore
