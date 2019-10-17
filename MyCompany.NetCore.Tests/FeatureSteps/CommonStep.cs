@@ -9,121 +9,116 @@ using TechTalk.SpecFlow;
 namespace MyCompany.NetCore.Tests.FeatureSteps
 {
     [Binding]
-    class CommonStep
+    internal class CommonStep
     {
-        private CommonMethods _SetParameters { get; set; }
-        private Dictionary<string, object> _responsedata { get; set; }
-        private ScenarioContext _scenarioContext { get; set; }
-        private string jwtoken { get; set; }
-        public CommonStep(ScenarioContext scenarioContext)
+        private CommonMethods SetParameters { get; }
+        private Dictionary<string, object> ResponseData { get; set; }
+        private ScenarioContext ScenarioContext { get; }
+        private string JavaWebToken { get; set; }
+        public CommonStep(ScenarioContext scenarioContext, CommonMethods setParameters)
         {
-            _scenarioContext = scenarioContext;
-        }
-
-        [BeforeScenario]
-        public void InitialiseScenarioObjects()
-        {
-            _SetParameters = new CommonMethods(_scenarioContext);
+            ScenarioContext = scenarioContext;
+            SetParameters = setParameters;
         }
 
         [Given(@"I have the endpoint for resource (.*)")]
         public void SetEndpoint(string application)
         {
-            _SetParameters.SetEndpoint(EndPoint.GetEndpoint(application));
+            SetParameters.SetEndpoint(EndPoint.GetEndpoint(application));
         }
 
         [Given(@"I have (.*) for endpoint")]
         public void GivenIHaveForEndpoint(string resource)
         {
-            _SetParameters.SetResource(Resource.GetResource(resource));
+            SetParameters.SetResource(Resource.GetResource(resource));
         }
 
         [Given(@"I set api request method to (.*)")]
-        public void GivenISetApiRequestMethodTo(string apimethod)
+        public void GivenISetApiRequestMethodTo(string apiMethod)
         {
-            _SetParameters.SetAPIMethod(apimethod);
+            SetParameters.SetApiMethod(apiMethod);
         }
 
         [Given(@"I have generated token for OAuthtwo using (.*) with parameters (.*)")]
-        public void GenerateOAuth2(string OAuthendpoint, string OAuthParameters)
+        public void GenerateOAuth2(string oauthEndpoint, string oAuthParameters)
         {
-            _SetParameters.GenerateOAuth2Token(OAuthendpoint, OAuthParameters);
+            SetParameters.GenerateOAuth2Token(oauthEndpoint, oAuthParameters);
         }
 
         [Given(@"I have set (.*) for the request with header parameters (.*)")]
-        public void SetHeader(string authorisationtype, string headerparameters)
+        public void SetHeader(string authorizationType, string headerParameters)
         {
-            string authtype = authorisationtype.ToUpper();
-            _SetParameters.SetHeaders(authtype, headerparameters);
+            string authType = authorizationType.ToUpper();
+            SetParameters.SetHeaders(authType, headerParameters);
         }
 
         [Given(@"I have parameters for constructing Endpoint (.*)")]
-        public void SetEndpointParameters(string endpointparameters)
+        public void SetEndpointParameters(string endpointParameters)
         {
-            _SetParameters.SetEndPointParameters(endpointparameters);
+            SetParameters.SetEndPointParameters(endpointParameters);
         }
 
         [Given(@"I have data for post request in (.*)")]
-        public void SetPostData(string payloadid)
+        public void SetPostData(string payloadId)
         {
-            _SetParameters.SetPostOrPutData(payloadid);
+            SetParameters.SetPostOrPutData(payloadId);
         }
 
         [When(@"I send request")]
         public void SendRequest()
         {
-            _responsedata = _SetParameters.SetRequestAndGetResponse();
+            ResponseData = SetParameters.SetRequestAndGetResponse();
         }
 
         [Then(@"The response status code should be (.*) with standard description")]
-        public void GetResponseCode(string expectedresponsecode)
+        public void GetResponseCode(string expectedResponseCode)
         {
-            string actualresponsecode = _responsedata["StatusCode"].ToString();
+            string actualResponseCode = ResponseData["StatusCode"].ToString();
 
-            Assert.AreEqual(expectedresponsecode, actualresponsecode,
-            ($"Received response code :  {actualresponsecode} does not match with expected code :  {expectedresponsecode}"));
+            Assert.AreEqual(expectedResponseCode, actualResponseCode,
+            ($"Received response code :  {actualResponseCode} does not match with expected code :  {expectedResponseCode}"));
 
-            string actualresponsedescription = _responsedata["StatusDescription"].ToString();
-            string expectedrespoonsedescription = RestResponseCode.StatusCodeToMessageMapping[(int)_responsedata["StatusCode"]].ToString();
+            string actualResponseDescription = ResponseData["StatusDescription"].ToString();
+            string expectedResponseDescription = RestResponseCode.StatusCodeToMessageMapping[(int)ResponseData["StatusCode"]].ToString();
 
-            Assert.AreEqual(expectedrespoonsedescription, actualresponsedescription,
-            ($"Received response description :  {actualresponsedescription} does not match with expected response description :  {expectedrespoonsedescription}"));
+            Assert.AreEqual(expectedResponseDescription, actualResponseDescription,
+            ($"Received response description :  {actualResponseDescription} does not match with expected response description :  {expectedResponseDescription}"));
         }
 
         [Then(@"The Response body should contain expected data for (.*) call")]
         public void VerifyResponseBody(string api)
         {
             //use api string reference to store response values in code and assert response against it
-            string responsecontent = _responsedata["SourceCode"].ToString();
-            Assert.IsTrue(JSONUtilities.ValidateJSONContentAgainstSchema(responsecontent),
+            string responseContent = ResponseData["SourceCode"].ToString();
+            Assert.IsTrue(JSONUtilities.ValidateJSONContentAgainstSchema(responseContent),
                 $"Schema validation failed for response");
         }
 
         [Then(@"The response should be received in (.*) milliseconds")]
-        public void VerifyRequestResponseTime(double maxresponsetime)
+        public void VerifyRequestResponseTime(double maxResponseTime)
         {
-            double actualresponsetime = Convert.ToDouble(_responsedata["ResponseTime"]);
-            Assert.IsTrue(actualresponsetime < maxresponsetime, $"Response time taken by request " +
-                $"{actualresponsetime} in ms exceeded maximum allowed time of {maxresponsetime} in ms");
+            double actualResponseTime = Convert.ToDouble(ResponseData["ResponseTime"]);
+            Assert.IsTrue(actualResponseTime < maxResponseTime, $"Response time taken by request " +
+                $"{actualResponseTime } in ms exceeded maximum allowed time of {maxResponseTime} in ms");
         }
 
         [Given(@"I want to generate JWToken for my application")]
-        public void SetParametersForJWToken()
+        public void SetParametersForJsonWebToken()
         {
             Console.WriteLine("Generating Json Web Token....");
         }        
 
         [When(@"I generate the JWToken with parameters (.*)")]
-        public void GenerateJWToken(string jwtokenparameters)
+        public void GenerateJwToken(string jsonWebTokenParameters)
         {
-            jwtoken = _SetParameters.SetJWTParametersAndGetJWToken(jwtokenparameters);
+            JavaWebToken = SetParameters.SetJwtParametersAndGetJwToken(jsonWebTokenParameters);
         }
 
         [Then(@"I get well formed JWToken which I can verify for its integrity")]
         public void VerifyJWToken()
         {
-            bool IsTokenValid = _SetParameters.CheckValidityOfJWToken(jwtoken);
-            Assert.IsTrue(IsTokenValid, $"Generated JWToken is not valid");
+            var isTokenValid = SetParameters.CheckValidityOfJwToken(JavaWebToken);
+            Assert.IsTrue(isTokenValid, $"Generated JWToken is not valid");
         }
 
         [AfterScenario]
@@ -131,9 +126,12 @@ namespace MyCompany.NetCore.Tests.FeatureSteps
         {
             try
             {
-
+                // Add your cleanup code here
             }
-            catch { }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
     }
 }

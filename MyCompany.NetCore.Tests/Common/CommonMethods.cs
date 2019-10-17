@@ -12,29 +12,29 @@ namespace MyCompany.NetCore.Tests.Common
 {
     class CommonMethods
     {
-        private RequestParameters _requestparameters { get; set; }
-        private static TestContext _testContext { get; set; }
+        private RequestParameters RequestParameters { get; set; }
+        private static TestContext TestContext { get; set; }
 
-        string authheader = "Authorization";        
+        private readonly string _authHeader = "Authorization";        
 
         public CommonMethods(ScenarioContext scenarioContext)
         {
-            _requestparameters = new RequestParameters();
-            _testContext = scenarioContext.ScenarioContainer.Resolve<TestContext>();
+            RequestParameters = new RequestParameters();
+            TestContext = scenarioContext.ScenarioContainer.Resolve<TestContext>();
         }
     
         internal void SetEndpoint(string application)
         {
-            _requestparameters.SetUri(application);
+            RequestParameters.SetUri(application);
         }
 
         internal void SetResource(string resource)
         {
-            _requestparameters.SetResource(resource);
+            RequestParameters.SetResource(resource);
         }
         internal void SetEndPointParameters(string parameters)
         {
-            Dictionary<string, string> allparams = new Dictionary<string, string>();
+            var allParameters = new Dictionary<string, string>();
             string rawparameters = parameters.Replace(" And ", ",");
             var allparameters = rawparameters.Split(',');
 
@@ -42,91 +42,91 @@ namespace MyCompany.NetCore.Tests.Common
             {
                 try
                 {
-                    string value = _testContext.Properties["Parameter:" + key].ToString() ?? "";
-                    allparams.Add(key, value);
+                    string value = TestContext.Properties["Parameter:" + key].ToString() ?? "";
+                    allParameters.Add(key, value);
                 }
                 catch { }
             }
 
-            string endpointparameters = Helper.DictionaryToQueryParametersList(allparams);
-            _requestparameters.AddURIParameters(endpointparameters);
+            string endpointParameters = Helper.DictionaryToQueryParametersList(allParameters);
+            RequestParameters.AddURIParameters(endpointParameters);
         }
         internal void GenerateOAuth2Token(string oAuthendpoint, string oAuthParameters)
         {
-            string OAuthParams = oAuthParameters.Replace(" And ", ",");
-            var oauthparams = OAuthParams.Split(',');
+            string oAuthParams = oAuthParameters.Replace(" And ", ",");
+            var oauthParameters = oAuthParams.Split(',');
 
-            Dictionary<string, string> allparams = new Dictionary<string, string>();
+            Dictionary<string, string> allParameters = new Dictionary<string, string>();
 
-            foreach (var key in oauthparams)
+            foreach (var key in oauthParameters)
             {
                 try
                 {
-                    string value = _testContext.Properties["Parameter:" + key].ToString() ?? "";
-                    allparams.Add(key, value);
+                    string value = TestContext.Properties["Parameter:" + key].ToString() ?? "";
+                    allParameters.Add(key, value);
                 }
                 catch { }
             }
 
-            string authserver = _testContext.Properties["Parameter:authserver"].ToString();
-            string requeststring = EndPoint.GetEndpoint(authserver);
-            string parameters = Helper.DictionaryToQueryParametersList(allparams);
-            Console.WriteLine($"Printing endpoint and parameters for oauth2 request {requeststring + parameters}");
+            string authorizationServer = TestContext.Properties["Parameter:authserver"].ToString();
+            string requestString = EndPoint.GetEndpoint(authorizationServer);
+            string parameters = Helper.DictionaryToQueryParametersList(allParameters);
+            Console.WriteLine($"Printing endpoint and parameters for oauth2 request {requestString + parameters}");
             var Oauth2Token = new OAuth2();
-            string OAuthToken = Oauth2Token.GetOAuthToken(requeststring + parameters);
-            _requestparameters.SetHeaders(authheader, "Bearer " + OAuthToken);
+            string OAuthToken = Oauth2Token.GetOAuthToken(requestString + parameters);
+            RequestParameters.SetHeaders(_authHeader, "Bearer " + OAuthToken);
         }
 
         internal void SetPostOrPutData(string postdataid)
         {
-            string postdata = PostData.GetPostData(postdataid);
-            _requestparameters.SetRequestData(postdata);
+            string postData = PostData.GetPostData(postdataid);
+            RequestParameters.SetRequestData(postData);
         }
 
-        internal void SetAPIMethod(string apimethod)
+        internal void SetApiMethod(string apimethod)
         {
-            _requestparameters.SetAPIRequestMethod(apimethod);
+            RequestParameters.SetAPIRequestMethod(apimethod);
         }
-        internal void SetHeaders(string authtype, string headerparameters)
+        internal void SetHeaders(string authorizationType, string headerParameters)
         {
-            string rawheaderparameters = headerparameters.Replace(" And ", ",");
-            var arrayheaders = rawheaderparameters.Split(',');
+            string rawHeaderParameters = headerParameters.Replace(" And ", ",");
+            var arrayHeaders = rawHeaderParameters.Split(',');
 
-            if (authtype.Equals("jwt", StringComparison.InvariantCultureIgnoreCase))
+            if (authorizationType.Equals("jwt", StringComparison.InvariantCultureIgnoreCase))
             {
-                string authority = _testContext.Properties["Parameter:authority"].ToString();
-                string brand = _testContext.Properties["Parameter:brand"].ToString();
-                string uid = _testContext.Properties["Parameter:customeruid"].ToString();
-                _requestparameters.SetHeaders(authheader, JsonWebToken.GetJWToken(authority, brand, uid));
+                string authority = TestContext.Properties["Parameter:authority"].ToString();
+                string brand = TestContext.Properties["Parameter:brand"].ToString();
+                string uid = TestContext.Properties["Parameter:customeruid"].ToString();
+                RequestParameters.SetHeaders(_authHeader, JsonWebToken.GetJWToken(authority, brand, uid));
             }
-            else if (authtype.Equals("basic", StringComparison.InvariantCultureIgnoreCase))
+            else if (authorizationType.Equals("basic", StringComparison.InvariantCultureIgnoreCase))
             {
-                string clientid = _testContext.Properties["Parameter:clientid"].ToString();
-                string clientsecret = _testContext.Properties["Parameter:clientsecret"].ToString();
-                string EncodedAuthString = BasicAuthentication.GetBasicAuthString(clientid, clientsecret);
-                _requestparameters.SetHeaders(authheader, "Basic " + EncodedAuthString);
+                string clientId = TestContext.Properties["Parameter:clientid"].ToString();
+                string clientSecret = TestContext.Properties["Parameter:clientsecret"].ToString();
+                string encodedAuthString = BasicAuthentication.GetBasicAuthString(clientId, clientSecret);
+                RequestParameters.SetHeaders(_authHeader, "Basic " + encodedAuthString);
             }
 
-            foreach (string authparameter in arrayheaders)
+            foreach (var authorizationParameter in arrayHeaders)
             {
                 try
                 {
-                    var parametervalue = _testContext.Properties["Parameter:" + authparameter].ToString();
-                    if (parametervalue != null)
+                    var parameterValue = TestContext.Properties["Parameter:" + authorizationParameter].ToString();
+                    if (parameterValue != null)
                     {
-                        _requestparameters.SetHeaders(authparameter, parametervalue);
+                        RequestParameters.SetHeaders(authorizationParameter, parameterValue);
                     }
                 }
                 catch { }
             }
-            _requestparameters.SetHeaders("x-transaction-id", Helper.GenerateTransactionId());
+            RequestParameters.SetHeaders("x-transaction-id", Helper.GenerateTransactionId());
         }
 
-        internal bool CheckValidityOfJWToken(string jwtoken)
+        internal bool CheckValidityOfJwToken(string jsonWebToken)
         {
-            string jwtokentoverify = jwtoken.Replace("Bearer ", "");
-            string[] tokensection = jwtokentoverify.Split('.');
-            var header = tokensection[0];
+            string jsonWebTokenToVerify = jsonWebToken.Replace("Bearer ", "");
+            string[] tokenSection = jsonWebTokenToVerify.Split('.');
+            var header = tokenSection[0];
             string headerJson = Encoding.UTF8.GetString(Convert.FromBase64String(header));
             string headerData = JsonConvert.DeserializeObject(headerJson).ToString();
             bool isHeaderValid = headerData.Contains("RS256");
@@ -134,21 +134,21 @@ namespace MyCompany.NetCore.Tests.Common
             if (isHeaderValid){return true;} return false;
         }
 
-        internal string SetJWTParametersAndGetJWToken(string jwtokenparameters)
+        internal string SetJwtParametersAndGetJwToken(string jsonTokenParameters)
         {
-            string authority = _testContext.Properties["Parameter:brand"].ToString();
-            string brand = _testContext.Properties["Parameter:brand"].ToString();
-            string uid = _testContext.Properties["Parameter:customeruid"].ToString();
-            string jwtoken = JsonWebToken.GetJWToken(authority, brand, uid);
-            Console.WriteLine($"Generated json token is {jwtoken} Verify the token on JWT.io website");
-            return jwtoken;
+            string authority = TestContext.Properties["Parameter:brand"].ToString();
+            string brand = TestContext.Properties["Parameter:brand"].ToString();
+            string uid = TestContext.Properties["Parameter:customeruid"].ToString();
+            string jsonWebToken = JsonWebToken.GetJWToken(authority, brand, uid);
+            Console.WriteLine($"Generated json token is {jsonWebToken} Verify the token on JWT.io website");
+            return jsonWebToken;
         }
 
         public Dictionary<string, object> SetRequestAndGetResponse()
         {
             var request = new Request();
             var response = new APIResponse();
-            request.SetAPIRequest(_requestparameters);
+            request.SetAPIRequest(RequestParameters);
             return response.GetResponse(request);
         }
     }
