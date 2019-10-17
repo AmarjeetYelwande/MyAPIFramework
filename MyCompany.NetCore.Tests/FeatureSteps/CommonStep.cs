@@ -13,11 +13,9 @@ namespace MyCompany.NetCore.Tests.FeatureSteps
     {
         private CommonMethods SetParameters { get; }
         private Dictionary<string, object> ResponseData { get; set; }
-        private ScenarioContext ScenarioContext { get; }
-        private string JavaWebToken { get; set; }
+        private string JsonWebToken { get; set; }
         public CommonStep(ScenarioContext scenarioContext, CommonMethods setParameters)
         {
-            ScenarioContext = scenarioContext;
             SetParameters = setParameters;
         }
 
@@ -39,7 +37,7 @@ namespace MyCompany.NetCore.Tests.FeatureSteps
             SetParameters.SetApiMethod(apiMethod);
         }
 
-        [Given(@"I have generated token for OAuthtwo using (.*) with parameters (.*)")]
+        [Given(@"I have generated token for OAuthTwo Authentication using (.*) with parameters (.*)")]
         public void GenerateOAuth2(string oauthEndpoint, string oAuthParameters)
         {
             SetParameters.GenerateOAuth2Token(oauthEndpoint, oAuthParameters);
@@ -88,7 +86,6 @@ namespace MyCompany.NetCore.Tests.FeatureSteps
         [Then(@"The Response body should contain expected data for (.*) call")]
         public void VerifyResponseBody(string api)
         {
-            //use api string reference to store response values in code and assert response against it
             string responseContent = ResponseData["SourceCode"].ToString();
             Assert.IsTrue(JsonUtilities.ValidateJsonContentAgainstSchema(responseContent),
                 $"Schema validation failed for response");
@@ -111,13 +108,13 @@ namespace MyCompany.NetCore.Tests.FeatureSteps
         [When(@"I generate the JWToken with parameters (.*)")]
         public void GenerateJwToken(string jsonWebTokenParameters)
         {
-            JavaWebToken = SetParameters.SetJwtParametersAndGetJwToken(jsonWebTokenParameters);
+            JsonWebToken = SetParameters.SetJwtParametersAndGetJwToken(jsonWebTokenParameters);
         }
 
         [Then(@"I get well formed JWToken which I can verify for its integrity")]
-        public void VerifyJWToken()
+        public void VerifyJsonWebToken()
         {
-            var isTokenValid = SetParameters.CheckValidityOfJwToken(JavaWebToken);
+            var isTokenValid = SetParameters.CheckValidityOfJwToken(JsonWebToken);
             Assert.IsTrue(isTokenValid, $"Generated JWToken is not valid");
         }
 
