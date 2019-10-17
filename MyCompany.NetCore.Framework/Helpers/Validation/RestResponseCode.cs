@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MyCompany.NetCore.Helpers.Validation
+namespace MyCompany.NetCore.Framework.Helpers.Validation
 {
     public static class RestResponseCode
     {

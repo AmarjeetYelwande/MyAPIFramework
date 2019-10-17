@@ -1,12 +1,12 @@
+using System;
+using System.IO;
+using System.Security.Cryptography;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Security;
-using System;
-using System.IO;
-using System.Security.Cryptography;
 
-namespace MyCompany.NetCore.Helpers.Authentication
+namespace MyCompany.NetCore.Framework.Helpers.Authentication
 {
     public static class JsonWebToken
     {

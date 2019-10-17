@@ -1,4 +1,4 @@
-namespace MyCompany.NetCore.Enumerators.Enum
+namespace MyCompany.NetCore.Framework.Enumerators
 {
     public enum HTTPMethod
     {

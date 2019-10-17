@@ -1,9 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyCompany.NetCore.Helpers.Common;
-using MyCompany.NetCore.Helpers.Validation;
 using MyCompany.NetCore.Tests.Common;
 using System;
 using System.Collections.Generic;
+using MyCompany.NetCore.Framework.Helpers.Common;
+using MyCompany.NetCore.Framework.Helpers.Validation;
 using TechTalk.SpecFlow;
 
 namespace MyCompany.NetCore.Tests.FeatureSteps

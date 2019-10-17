@@ -1,4 +1,3 @@
-using MyCompany.NetCore.Enumerators.Enum;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,8 +5,9 @@ using System.IO;
 using System.Net;
 using System.Net.Cache;
 using System.Text;
+using MyCompany.NetCore.Framework.Enumerators;
 
-namespace MyCompany.NetCore.Operation
+namespace MyCompany.NetCore.Framework.Operation
 {
     public class Request
     {

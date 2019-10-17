@@ -1,6 +1,6 @@
 using System;
 
-namespace MyCompany.NetCore.Helpers.Authentication
+namespace MyCompany.NetCore.Framework.Helpers.Authentication
 {
     public static class BasicAuthentication
     {

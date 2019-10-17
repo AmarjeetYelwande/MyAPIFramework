@@ -1,10 +1,10 @@
-using MyCompany.NetCore.Enumerators.Enum;
-using MyCompany.NetCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using MyCompany.NetCore.Framework.Enumerators;
+using MyCompany.NetCore.Interfaces;
 
-namespace MyCompany.NetCore.Operation
+namespace MyCompany.NetCore.Framework.Operation
 {
     public class RequestParameters : IRequest
     {

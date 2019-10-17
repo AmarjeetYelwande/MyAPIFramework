@@ -1,11 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyCompany.NetCore.Helpers.Authentication;
-using MyCompany.NetCore.Helpers.Common;
-using MyCompany.NetCore.Operation;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MyCompany.NetCore.Framework.Helpers.Authentication;
+using MyCompany.NetCore.Framework.Helpers.Common;
+using MyCompany.NetCore.Framework.Operation;
 using TechTalk.SpecFlow;
 
 namespace MyCompany.NetCore.Tests.Common

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MyCompany.NetCore.Operation
+namespace MyCompany.NetCore.Framework.Operation
 {
     public class APIResponse
     {

@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace MyCompany.NetCore.Helpers.Encryption
+namespace MyCompany.NetCore.Framework.Helpers.Encryption
 {
     public class MD5Hash
     {

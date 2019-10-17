@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace MyCompany.NetCore.Helpers.Common
+namespace MyCompany.NetCore.Framework.Helpers.Common
 {
     public static class Helper
     {

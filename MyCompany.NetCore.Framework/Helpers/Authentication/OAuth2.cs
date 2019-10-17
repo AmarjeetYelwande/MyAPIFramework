@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading;
+using Newtonsoft.Json;
 
-namespace MyCompany.NetCore.Helpers.Authentication
+namespace MyCompany.NetCore.Framework.Helpers.Authentication
 {
     public class OAuth2
     {
