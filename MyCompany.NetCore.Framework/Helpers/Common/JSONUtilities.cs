@@ -24,14 +24,14 @@ namespace MyCompany.NetCore.Framework.Helpers.Common
                     }
                     if (jsonString.StartsWith("["))
                     {
-                        JArray array = JArray.Parse(jsonString.ToString());
+                        var array = JArray.Parse(jsonString.ToString());
                         propertyValue = (string)array[0].SelectToken(propertyKey);
                     }
                 }
                 else
                 {
-                    JObject jObject = JObject.Parse(jsonString);
-                    JToken value = jObject[subValue][0];
+                    var jObject = JObject.Parse(jsonString);
+                    var value = jObject[subValue][0];
                     propertyValue =  value[propertyKey].ToString();
                 }
             }

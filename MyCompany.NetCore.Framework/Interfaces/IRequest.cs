@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace MyCompany.NetCore.Interfaces
+namespace MyCompany.NetCore.Framework.Interfaces
 {
     public interface IRequest
     {

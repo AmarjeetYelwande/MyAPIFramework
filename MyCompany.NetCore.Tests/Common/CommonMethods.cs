@@ -76,8 +76,8 @@ namespace MyCompany.NetCore.Tests.Common
             string parameters = Helper.DictionaryToQueryParametersList(allParameters);
             Console.WriteLine($"Printing endpoint and parameters for oauth2 request {requestString + parameters}");
             var oauth2Token = new OAuth2();
-            string OAuthToken = oauth2Token.GetOAuthToken(requestString + parameters);
-            RequestParameters.SetHeaders(_authHeader, "Bearer " + OAuthToken);
+            string oAuthToken = oauth2Token.GetOAuthToken(requestString + parameters);
+            RequestParameters.SetHeaders(_authHeader, "Bearer " + oAuthToken);
         }
 
         internal void SetPostOrPutData(string postDataId)

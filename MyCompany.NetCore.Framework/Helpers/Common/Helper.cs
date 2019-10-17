@@ -25,7 +25,7 @@ namespace MyCompany.NetCore.Framework.Helpers.Common
             {
                 var keys = new List<string>(parameterList.Keys);
                 StringBuilder sb = new StringBuilder();
-                foreach (string key in keys)
+                foreach (var key in keys)
                 {
                     var value = parameterList[key];
                     sb.Append(key + "=" + value + "&");

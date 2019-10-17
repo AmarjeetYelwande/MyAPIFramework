@@ -11,10 +11,10 @@ namespace MyCompany.NetCore.Tests.Common
             try
             {
                 string currentDirectory = Directory.GetCurrentDirectory();
-                string pathtoresources = Path.Combine(currentDirectory, "Data", "Resources");
+                string pathToResources = Path.Combine(currentDirectory, "Data", "Resources");
                 
                 IConfigurationBuilder builder = new ConfigurationBuilder()
-                    .SetBasePath(pathtoresources)
+                    .SetBasePath(pathToResources)
                     .AddJsonFile("Resources.json", optional: true, reloadOnChange: true);
 
                 IConfigurationRoot configuration = builder.Build();
@@ -22,9 +22,9 @@ namespace MyCompany.NetCore.Tests.Common
                 Console.WriteLine($"Resource set to : {configurationSection.Value}");
                 return configurationSection.Value;
             }
-            catch (Exception resourcenotfound)
+            catch (Exception resourceNotFound)
             {
-                Console.WriteLine($"Resource not found due to error : {resourcenotfound.Message}");
+                Console.WriteLine($"Resource not found due to error : {resourceNotFound.Message}");
                 return "";
             }
         }

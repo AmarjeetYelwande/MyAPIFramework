@@ -29,9 +29,9 @@ namespace MyCompany.NetCore.Framework.Helpers.Authentication
                 Console.WriteLine($"Time taken by OAuth request to execute is : {ResponseTime} ms ");
                 return GetTokenFromResponse();
             }
-            catch(WebException failedrequest)
+            catch(WebException failedRequest)
             {                              
-                Console.WriteLine($"Request failed due to error : {failedrequest.Message}");
+                Console.WriteLine($"Request failed due to error : {failedRequest.Message}");
                 throw;
             }
             finally

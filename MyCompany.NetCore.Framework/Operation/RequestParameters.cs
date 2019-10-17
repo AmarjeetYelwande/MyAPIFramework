@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using MyCompany.NetCore.Framework.Enumerators;
-using MyCompany.NetCore.Interfaces;
+using MyCompany.NetCore.Framework.Interfaces;
 
 namespace MyCompany.NetCore.Framework.Operation
 {

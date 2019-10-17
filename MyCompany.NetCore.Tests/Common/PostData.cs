@@ -11,13 +11,13 @@ namespace MyCompany.NetCore.Tests.Common
             {
                 string currentDirectory = Directory.GetCurrentDirectory();
                 string pathToPayloadFile = Path.Combine(currentDirectory, "Data\\POST", postdataid + ".json");
-                var rawjsonschema = new StreamReader(pathToPayloadFile);
-                var payload = rawjsonschema.ReadToEnd();
+                var rawJsonSchema = new StreamReader(pathToPayloadFile);
+                var payload = rawJsonSchema.ReadToEnd();
                 return payload;
             }
-            catch (Exception postdatanotfound)
+            catch (Exception postDataNotFound)
             {
-                Console.WriteLine($"Unable to load POST data fdue to error not found due to error : {postdatanotfound.Message}");
+                Console.WriteLine($"Unable to load POST data due to error not found due to error : {postDataNotFound.Message}");
                 return "";
             }
         }

@@ -11,10 +11,10 @@ namespace MyCompany.NetCore.Tests.Common
             try
             {
                 string currentDirectory = Directory.GetCurrentDirectory();
-                string pathtoendpoints = Path.Combine(currentDirectory, "Data", "Endpoints");
+                string pathToEndpoints = Path.Combine(currentDirectory, "Data", "Endpoints");
 
                 IConfigurationBuilder builder = new ConfigurationBuilder()
-                    .SetBasePath(pathtoendpoints)
+                    .SetBasePath(pathToEndpoints)
                     .AddJsonFile("Endpoints.json", optional: true, reloadOnChange: true);
 
                 IConfigurationRoot configuration = builder.Build();
@@ -22,9 +22,9 @@ namespace MyCompany.NetCore.Tests.Common
                 Console.WriteLine($"Endpoint set to : {configurationSection.Value}");
                 return configurationSection.Value;
             }
-            catch (Exception endpointnotfound)
+            catch (Exception endpointNotFound)
             {
-                Console.WriteLine($"Endpoint not found due to error : {endpointnotfound.Message}");
+                Console.WriteLine($"Endpoint not found due to error : {endpointNotFound.Message}");
                 return "";
             }
         }
