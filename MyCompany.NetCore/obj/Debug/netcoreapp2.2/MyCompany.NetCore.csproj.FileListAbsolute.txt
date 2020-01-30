@@ -1,9 +1,0 @@
-C:\Users\AmarjeetYelwande\source\repos\MyCompany.NetCore\MyCompany.NetCore\obj\Debug\netcoreapp2.2\MyCompany.NetCore.csproj.CoreCompileInputs.cache
-C:\Users\AmarjeetYelwande\source\repos\MyCompany.NetCore\MyCompany.NetCore\obj\Debug\netcoreapp2.2\MyCompany.NetCore.AssemblyInfoInputs.cache
-C:\Users\AmarjeetYelwande\source\repos\MyCompany.NetCore\MyCompany.NetCore\obj\Debug\netcoreapp2.2\MyCompany.NetCore.AssemblyInfo.cs
-C:\Users\AmarjeetYelwande\source\repos\MyCompany.NetCore\MyCompany.NetCore\bin\Debug\netcoreapp2.2\MyCompany.NetCore.deps.json
-C:\Users\AmarjeetYelwande\source\repos\MyCompany.NetCore\MyCompany.NetCore\bin\Debug\netcoreapp2.2\MyCompany.NetCore.dll
-C:\Users\AmarjeetYelwande\source\repos\MyCompany.NetCore\MyCompany.NetCore\bin\Debug\netcoreapp2.2\MyCompany.NetCore.pdb
-C:\Users\AmarjeetYelwande\source\repos\MyCompany.NetCore\MyCompany.NetCore\obj\Debug\netcoreapp2.2\MyCompany.NetCore.dll
-C:\Users\AmarjeetYelwande\source\repos\MyCompany.NetCore\MyCompany.NetCore\obj\Debug\netcoreapp2.2\MyCompany.NetCore.pdb
-C:\Users\AmarjeetYelwande\source\repos\MyCompany.NetCore\MyCompany.NetCore\bin\Debug\netcoreapp2.2\Schemas\StandardJsonSchema.json
