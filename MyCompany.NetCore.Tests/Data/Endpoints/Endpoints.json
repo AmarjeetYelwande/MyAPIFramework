@@ -1,4 +1,29 @@
 ﻿{
+  "saloon": {
+    "Endpoint": "http://localhost:54356/api/Cars/Saloon"
+  },
+
+  "suv": {
+    "Endpoint": "http://localhost:54356/api/Cars/SUV"
+  },
+
+  "hatchback": {
+    "Endpoint": "http://localhost:54356/api/Cars/Hatchback"
+  },
+
+  "mini": {
+    "Endpoint": "http://localhost:54356/api/Cars/Mini"
+  },
+
+  "suvallsmall": {
+    "Endpoint": "http://localhost:54356/api/Cars/suv"
+  },
+
+  "empty": {
+    "Endpoint": "http://localhost:54356/api/Cars/"
+  },
+
+
   "testlocaljsongetandelete": {
     "Endpoint": "http://localhost:3000/posts/1"
   },
@@ -6,4 +31,6 @@
   "testlocaljsonpost": {
     "Endpoint": "http://localhost:3000/posts/"
   }
+
+
 }

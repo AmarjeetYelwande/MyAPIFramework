@@ -83,8 +83,8 @@ namespace MyCompany.NetCore.Tests.FeatureSteps
             ($"Received response description :  {actualResponseDescription} does not match with expected response description :  {expectedResponseDescription}"));
         }
 
-        [Then(@"The Response body should contain expected data for (.*) call")]
-        public void VerifyResponseBody(string api)
+        [Then(@"The Response body should successfully validate against standard schema definition")]
+        public void VerifyResponseBody()
         {
             string responseContent = ResponseData["SourceCode"].ToString();
             Assert.IsTrue(JsonUtilities.ValidateJsonContentAgainstSchema(responseContent),

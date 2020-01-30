@@ -87,9 +87,10 @@ namespace MyCompany.NetCore.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void TestSimpleLocalJsonServerAPIGet(string test, string application, string authorization, string apimethod, string contenttype, string statuscode, string maxresponsetime, string api, string[] exampleTags)
+        public virtual void TestSimpleLocalJsonServerAPIGet(string test, string application, string authorization, string apimethod, string contenttype, string statuscode, string maxresponsetime, string[] exampleTags)
         {
             string[] @__tags = new string[] {
+                    "ignore",
                     "LocalJsonServerAPITestGet"};
             if ((exampleTags != null))
             {
@@ -113,8 +114,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then(string.Format("The response status code should be {0} with standard description", statuscode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
  testRunner.And(string.Format("The response should be received in {0} milliseconds", maxresponsetime), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 19
- testRunner.And(string.Format("The Response body should contain expected data for {0} call", api), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -122,6 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("TestSimpleLocalJsonServerAPIGet: testsimpleapi")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Template feature for testing rest API")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.IgnoreAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("LocalJsonServerAPITestGet")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "testsimpleapi")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:test", "testsimpleapi")]
@@ -131,31 +131,31 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:contenttype", "application/json;charset=utf-8")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:statuscode", "200")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:maxresponsetime", "5000")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:api", "testlocaljson")]
         public virtual void TestSimpleLocalJsonServerAPIGet_Testsimpleapi()
         {
 #line 11
-this.TestSimpleLocalJsonServerAPIGet("testsimpleapi", "testlocaljsongetandelete", "No", "GET", "application/json;charset=utf-8", "200", "5000", "testlocaljson", ((string[])(null)));
+this.TestSimpleLocalJsonServerAPIGet("testsimpleapi", "testlocaljsongetandelete", "No", "GET", "application/json;charset=utf-8", "200", "5000", ((string[])(null)));
 #line hidden
         }
         
         public virtual void GenerateJWTTokenAndValidate(string test, string brand, string authority, string customeruid, string[] exampleTags)
         {
             string[] @__tags = new string[] {
+                    "ignore",
                     "GenerateJWToken"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GenerateJWTTokenAndValidate", null, @__tags);
-#line 26
+#line 25
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 27
+#line 26
  testRunner.Given("I want to generate JWToken for my application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 28
+#line 27
  testRunner.When("I generate the JWToken with parameters brand And authority And customeruid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
+#line 28
  testRunner.Then("I get well formed JWToken which I can verify for its integrity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -164,6 +164,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("GenerateJWTTokenAndValidate: generateJWToken")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Template feature for testing rest API")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.IgnoreAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("GenerateJWToken")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "generateJWToken")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:test", "generateJWToken")]
@@ -172,7 +173,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:customeruid", "9df917e5-f3e1-4fa1-bd19-d83e8542fa07")]
         public virtual void GenerateJWTTokenAndValidate_GenerateJWToken()
         {
-#line 26
+#line 25
 this.GenerateJWTTokenAndValidate("generateJWToken", "MyBrand", "MyAuthority", "9df917e5-f3e1-4fa1-bd19-d83e8542fa07", ((string[])(null)));
 #line hidden
         }

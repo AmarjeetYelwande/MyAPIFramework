@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\Template - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Bogus" Version="28.3.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.0.0" />
@@ -33,6 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Features\CarShowroomTest.feature.cs">
+      <DependentUpon>CarShowroomTest.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Data\Endpoints\Endpoints.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -45,6 +55,13 @@
     <None Update="Data\POST\LocalJsonServerPost.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\CarShowroomTest.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
